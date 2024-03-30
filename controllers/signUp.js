@@ -22,7 +22,7 @@ async function authentication (req, res, next) {
   }
 
   const { name, surname, email, password } = req.body
-  let avatarString = null
+  let avatarString
 
   if (req.files?.avatar) {
     if (Array.isArray(req.files.avatar)) {
