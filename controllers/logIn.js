@@ -42,7 +42,8 @@ async function logIn (req, res) {
     res.cookie('jwt', token, cookieOptions)
     res.status(201).json({
       status: 'ok',
-      message: 'Usuario loggeado'
+      message: 'Usuario loggeado',
+      data: user[0]
     })
   } catch (error) {
     console.log(error)
