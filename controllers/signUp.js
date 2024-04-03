@@ -42,7 +42,7 @@ async function authentication (req, res, next) {
   const pool = await getPool()
 
   try {
-    const [result] = await pool.query('SELECT user_id FROM user WHERE email = ?', [email])
+    const [result] = await pool.query('SELECT id FROM user WHERE email = ?', [email])
 
     if (result.length !== 0) {
       res.status(409).send('El usuario ya ha sido registrado.')
@@ -50,7 +50,7 @@ async function authentication (req, res, next) {
     }
 
     await pool.query(`
-      INSERT INTO user (user_id, user_name, user_surname, email, password, avatar)
+      INSERT INTO user (id, name, surname, email, password, avatar)
       VALUES (?, ?, ?, ?, ?, ?)
     `, [userId, name, surname, email, hashedPassword, avatarString])
 
