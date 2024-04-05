@@ -1,6 +1,6 @@
-const getPool = require('../DB/ConnectionDB.js')
-const editUserSchema = require('../schemas/editUserSchema.js')
-const { savePhoto } = require('../helpers/savePhoto.js')
+const getPool = require('../../DB/ConnectionDB.js')
+const editUserSchema = require('../../schemas/editUserSchema.js')
+const { savePhoto } = require('../../helpers/savePhoto.js')
 
 async function editUser (req, res, next) {
   try {

@@ -1,5 +1,5 @@
-const getPool = require('../DB/ConnectionDB.js')
-const idSchema = require('../schemas/idSchmea.js')
+const getPool = require('../../DB/ConnectionDB.js')
+const idSchema = require('../../schemas/idSchmea.js')
 
 async function getUser (req, res, next) {
   const { error: errorId } = await idSchema.validateAsync(req.params.id)

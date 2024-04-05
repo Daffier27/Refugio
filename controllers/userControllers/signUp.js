@@ -1,10 +1,10 @@
-const getPool = require('../DB/ConnectionDB.js')
+const getPool = require('../../DB/ConnectionDB.js')
 const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
-const savePhoto = require('../helpers/savePhoto.js')
+const savePhoto = require('../../helpers/savePhoto.js')
 
-const authenticationSchema = require('../schemas/authenticationSchema.js')
-const photoSchema = require('../schemas/photoSchema.js')
+const authenticationSchema = require('../../schemas/authenticationSchema.js')
+const photoSchema = require('../../schemas/photoSchema.js')
 
 async function authentication (req, res, next) {
   const { error: errorUser } = authenticationSchema.validate(req.body)

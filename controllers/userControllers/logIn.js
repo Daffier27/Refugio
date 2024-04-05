@@ -1,8 +1,8 @@
-const logInSchema = require('../schemas/logInSchema.js')
-const getPool = require('../DB/ConnectionDB.js')
+const logInSchema = require('../../schemas/logInSchema.js')
+const getPool = require('../../DB/ConnectionDB.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { JWT_EXPIRATION, JWT_COOKIE_EXPIRES, JWT_TOKEN } = require('../config.js')
+const { JWT_EXPIRATION, JWT_COOKIE_EXPIRES, JWT_TOKEN } = require('../../config.js')
 
 async function logIn (req, res) {
   try {
