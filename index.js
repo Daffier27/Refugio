@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const userRouter = require('./routes/usersRoutes')
+const animalsRouter = require('./routes/animalsRoutes.js')
 const { SERVER_PORT } = require('./config.js')
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
@@ -13,6 +14,7 @@ app.use(express.json({ limit: '10mb' }))
 app.use(fileUpload())
 
 app.use('/user', userRouter)
+app.use('/animal', animalsRouter)
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server is listening on port ${SERVER_PORT}`)
