@@ -23,7 +23,6 @@ async function getAllAnimals (req, res, next) {
       animal.species, 
       animal.age, 
       animal.gender;
-
     `)
 
     for (const animal of animals) {
