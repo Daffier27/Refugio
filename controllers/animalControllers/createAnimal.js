@@ -17,14 +17,15 @@ async function createAnimal (req, res, next) {
       return res.status(400).send('Se requiere al menos una imagen para el animal')
     }
 
-    const { name, species, age, gender, speciesId, breedId } = req.body
+    const { name, age, gender, speciesId, breedId } = req.body
+    console.log(req.body)
     const animalId = uuidv4()
 
     const pool = await getPool()
 
     await pool.query(
-      'INSERT INTO animal (id, name, species, age, gender, species_id, breed_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [animalId, name, species, age, gender, speciesId, breedId]
+      'INSERT INTO animal (id, name, age, gender, species_id, breed_id) VALUES (?, ?, ?, ?, ?, ?)',
+      [animalId, name, age, gender, speciesId, breedId]
     )
 
     for (const photo of animalImages) {
@@ -33,7 +34,7 @@ async function createAnimal (req, res, next) {
         return res.status(400).send('Error en la foto: ' + photoError.message)
       }
 
-      const photoId = savePhoto(photo)
+      const photoId = await savePhoto(photo)
       await pool.query(
         'INSERT INTO animal_images (photo_id, animal_id) VALUES (?, ?)',
         [photoId, animalId]
