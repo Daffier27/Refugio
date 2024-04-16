@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "createDatabase": "node ./DB/createDB.js"
+    "createDatabase": "node ./DB/createDB.js",
+    "createData": "node ./DB/createData.js"
   },
   "keywords": [],
   "author": "",
