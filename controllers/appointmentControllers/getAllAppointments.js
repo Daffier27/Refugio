@@ -6,7 +6,7 @@ async function getAllAppointments (req, res, next) {
 
     const currentDate = new Date().toISOString()
 
-    const appointments = await pool.query(`
+    const [appointments] = await pool.query(`
       SELECT appointment_id, user_id, appointmentTime
       FROM appointment
       WHERE appointmentTime > ? 

@@ -60,13 +60,25 @@ async function createDB () {
     `)
 
     await pool.query(`
-      CREATE TABLE appointment (
-        appointment_id VARCHAR(50) PRIMARY KEY,
-        user_id VARCHAR(50),
-        appointmentTime DATETIME, 
-        status VARCHAR(20),
-        FOREIGN KEY (user_id) REFERENCES user(id)
-      )
+    CREATE TABLE appointment_slot (
+      slot_id VARCHAR(50) PRIMARY KEY,
+      start_time DATETIME NOT NULL,
+      end_time DATETIME NOT NULL,
+      available_slots INT NOT NULL,
+      UNIQUE (start_time, end_time)
+    )
+  `)
+
+    await pool.query(`
+    CREATE TABLE appointment (
+      appointment_id VARCHAR(50) PRIMARY KEY,
+      user_id VARCHAR(50),
+      appointmentTime DATETIME, 
+      status VARCHAR(20),
+      slot_id VARCHAR(50),
+      FOREIGN KEY (user_id) REFERENCES user(id),
+      FOREIGN KEY (slot_id) REFERENCES appointment_slot(slot_id)
+    );
     `)
 
     await pool.query(`
@@ -78,16 +90,6 @@ async function createDB () {
         adoptionFEE DECIMAL(10,2),
         FOREIGN KEY (user_id) REFERENCES user(id),
         FOREIGN KEY (animal_id) REFERENCES animal(id)
-      )
-    `)
-
-    await pool.query(`
-      CREATE TABLE appointment_slot (
-        slot_id VARCHAR(50) PRIMARY KEY,
-        start_time DATETIME NOT NULL,
-        end_time DATETIME NOT NULL,
-        available_slots INT NOT NULL,
-        UNIQUE (start_time, end_time)
       )
     `)
 
