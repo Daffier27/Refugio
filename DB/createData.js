@@ -48,23 +48,14 @@ async function insertTestData () {
       ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
       ('ffffffff-ffff-ffff-ffff-ffffffffffff', 'cccccccc-cccc-cccc-cccc-cccccccccccc');
   `)
-  // Inserción de slots de citas
-  await pool.query(`
-   INSERT INTO appointment_slot (slot_id, start_time, end_time, available_slots)
-   VALUES
-     ('77777777-7777-7777-7777-777777777777', '2024-04-17 10:00:00', '2024-04-17 11:00:00', 5),
-     ('88888888-8888-8888-8888-888888888888', '2024-04-18 11:00:00', '2024-04-18 12:00:00', 3),
-     ('99999999-9999-9999-9999-999999999999', '2024-04-19 09:00:00', '2024-04-19 10:00:00', 2);
-   
-   `)
 
   // Inserción de citas
   await pool.query(`
-  INSERT INTO appointment (appointment_id, user_id, appointmentTime, status, slot_id)
+  INSERT INTO appointment (appointment_id, user_id, appointmentTime, status)
   VALUES
-    ('11111111-1111-1111-1111-111111111111', '11111111-1111-1111-1111-111111111111', '2024-04-17 10:00:00', 'Scheduled', '77777777-7777-7777-7777-777777777777'),
-    ('22222222-2222-2222-2222-222222222222', '22222222-2222-2222-2222-222222222222', '2024-04-18 11:00:00', 'Confirmed', '88888888-8888-8888-8888-888888888888'),
-    ('33333333-3333-3333-3333-333333333333', '33333333-3333-3333-3333-333333333333', '2024-04-19 09:00:00', 'Scheduled', '99999999-9999-9999-9999-999999999999');
+    ('11111111-1111-1111-1111-111111111111', '11111111-1111-1111-1111-111111111111', '2024-04-17 10:00:00', 'Pendiente'),
+    ('22222222-2222-2222-2222-222222222222', '22222222-2222-2222-2222-222222222222', '2024-04-18 11:00:00', 'Completada'),
+    ('33333333-3333-3333-3333-333333333333', '33333333-3333-3333-3333-333333333333', '2024-04-19 09:00:00', 'Pendiente');
 
   `)
 
